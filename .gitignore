@@ -13,6 +13,6 @@ yarn-error.log*
 # Mac
 .DS_Store
 
-# Env files (future-proofing)
+# Env files
 .env
 .env.local
