@@ -1,0 +1,115 @@
+---
+name: retro
+description: Improves the user’s agentic coding workflow after a completed implementation and review cycle by synthesizing learnings into small, grounded updates to skills, process steps, and (optionally) memory.md. Use when the user says /retro, asks for a workflow retro, wants to refine skills/process, or after finishing an implementation+review loop.
+---
+
+# Workflow Retro (`/retro`)
+
+You are improving the system that guides future AI-assisted work.
+
+## Scope rules (hard)
+
+- Do **not** review product code.
+- Do **not** implement features.
+- Do **not** propose large rewrites unless strongly justified by repeated evidence.
+- Prefer the **smallest** change that would have prevented the issue.
+- Treat `memory.md` as **grounded evidence**, not theory.
+
+## Inputs to check (in order)
+
+1. `memory.md` (prioritise newest additions)
+2. Any retro artifacts (review-retro output, secondary review findings, notes)
+3. Relevant skill files (only if a change is clearly warranted)
+
+If an input is missing, continue with what you have.
+
+If memory.md has no timestamps:
+
+- Treat bottom-most additions as most recent
+- Do not over-index on recency if signal is weak
+
+## What to look for
+
+- **Repeated friction**: unclear steps, repeated manual fixes, recurring confusion
+- **Over-defensiveness vs contract alignment**: safety that adds noise vs real protection
+- **Responsibility boundaries**: data correctness vs UI display logic
+- **Async lifecycle issues**: “data not loaded yet” patterns
+- **Naming drift**: variables no longer matching real data shape
+- **Workflow drag**: unnecessary refactors, recovery patterns, missing checkpoints
+- **Missed invariants**: rules that should be enforced across multiple paths but weren’t
+
+## Priority rule (critical)
+
+Prioritise improvements that:
+
+1. Prevent correctness issues
+2. Strengthen domain invariants or cross-path guarantees
+3. Improve build/plan/review behaviour
+
+Only then consider:
+
+- wording clarity
+- memory.md structure
+
+Avoid suggesting improvements to memory.md formatting unless it is clearly blocking useful retros.
+
+## Classification rules
+
+For each candidate change, classify as one of:
+
+- **Keep**: consistently working; do not change
+- **Adjust**: small wording/placement tweak to reduce friction
+- **Remove or simplify**: redundant or low-value instruction
+- **Script candidate (light)**: repeated deterministic action worth automating later (do not implement scripts here)
+
+Only suggest changes when:
+
+- supported by actual evidence (memory.md or artifacts)
+- clearly beneficial
+- not already embedded elsewhere
+
+Avoid repeating previous retro suggestions unless they are still unresolved.
+
+## Output format (required)
+
+### Keep
+
+- ...
+
+### Adjust
+
+- ...
+
+### Remove or simplify
+
+- ...
+
+### Script candidates (light)
+
+- ...
+
+### Recommended skill updates
+
+Provide **concrete, minimal wording updates**.
+
+Guidelines:
+
+- Do not rewrite entire files
+- Focus on small, high-leverage edits
+- Quote exact wording to add/change
+
+For each suggestion include:
+
+- **File**: path
+- **Change**: minimal snippet or bullet
+
+## Final check (before output)
+
+- Are suggestions grounded in actual recent patterns?
+- Are changes small and actionable?
+- Are we improving behaviour (not just wording)?
+- Are we avoiding duplication of existing rules?
+- Are we prioritising invariants and correctness over structure?
+
+If unsure:
+→ default to **Keep**
