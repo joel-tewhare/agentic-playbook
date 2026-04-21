@@ -24,7 +24,6 @@ You are improving the system that guides future AI-assisted work.
 If an input is missing, continue with what you have.
 
 If memory.md has no timestamps:
-
 - Treat bottom-most additions as most recent
 - Do not over-index on recency if signal is weak
 
@@ -41,13 +40,11 @@ If memory.md has no timestamps:
 ## Priority rule (critical)
 
 Prioritise improvements that:
-
 1. Prevent correctness issues
 2. Strengthen domain invariants or cross-path guarantees
 3. Improve build/plan/review behaviour
 
 Only then consider:
-
 - wording clarity
 - memory.md structure
 
@@ -63,7 +60,6 @@ For each candidate change, classify as one of:
 - **Script candidate (light)**: repeated deterministic action worth automating later (do not implement scripts here)
 
 Only suggest changes when:
-
 - supported by actual evidence (memory.md or artifacts)
 - clearly beneficial
 - not already embedded elsewhere
@@ -73,19 +69,15 @@ Avoid repeating previous retro suggestions unless they are still unresolved.
 ## Output format (required)
 
 ### Keep
-
 - ...
 
 ### Adjust
-
 - ...
 
 ### Remove or simplify
-
 - ...
 
 ### Script candidates (light)
-
 - ...
 
 ### Recommended skill updates
@@ -93,7 +85,6 @@ Avoid repeating previous retro suggestions unless they are still unresolved.
 Provide **concrete, minimal wording updates**.
 
 Guidelines:
-
 - Do not rewrite entire files
 - Focus on small, high-leverage edits
 - Quote exact wording to add/change

@@ -33,10 +33,10 @@ FLOW (FULL PROJECT):
    - Surfaces assumptions locally
    - Produces clear implementation target (without coding yet)
 
-4. /build (pass-based)
+4. /build-pass (pass-based)
    - Implements in controlled passes:
      1. UI/Layout
-     2. Data Wiring
+     2. Data Wiring (supports mock-first mode)
      3. Derived Logic
      4. Final Polish
    - Stops after each pass for review
@@ -54,7 +54,7 @@ FLOW (FULL PROJECT):
    - Capture notable findings in `memory.md` if they represent reusable patterns or future skill improvements
 
 7. checks.sh (validation step)
-   - Run project checks before external review:
+   - Run project checks before deeper review:
      - typecheck
      - lint
      - build
@@ -82,7 +82,25 @@ FLOW (FULL PROJECT):
      - Apply minimal, targeted fixes
    - Capture reusable insights in `memory.md` where appropriate
 
-10. /review-retro
+10. Security pass (post-build hardening)
+   - /security-audit
+     - Code-grounded audit of:
+       - untrusted input
+       - trust boundaries
+       - model-to-action paths
+       - blast radius
+       - secrets and environment usage
+     - Identifies highest-risk issues only
+
+   - /security-fix
+     - Applies minimal, targeted fixes
+     - Prioritises:
+       - auth + route protection
+       - server-side enforcement over client trust
+       - reduced blast radius
+     - Avoids broad refactors
+
+11. /review-retro
 
 - Structured reflection on review findings
 - Categorises:
@@ -93,7 +111,7 @@ FLOW (FULL PROJECT):
 - Identifies patterns in issues
 - Feeds candidate improvements into `memory.md`
 
-11. /retro
+12. /retro
 
 - Broader workflow reflection
 - Updates:
@@ -102,19 +120,35 @@ FLOW (FULL PROJECT):
   - personal system improvements
 - Uses `memory.md` as input for refining future behaviour
 
+13. /wire-integration (when required)
+
+- Replaces mock-first wiring with real integrations
+- Preserves UI and derived logic where possible
+- Introduces:
+  - real APIs / providers
+  - auth + env handling
+  - validation and failure states
+- Enforces:
+  - narrow integration boundaries
+  - minimal blast radius
+  - least-privilege permission posture
+
 ---
 
 FLOW (FEATURE / SMALL SCOPE):
 
 Feature Anchor Doc (optional)
 → /plan
-→ /build or /build-pro
+→ /build-pass or /build-pro
 → Human Review (update memory.md if needed)
 → checks.sh
 → /project-review (optional)
 → Decision + Evaluation (Cursor)
+→ /security-audit (optional but recommended for integration features)
+→ /security-fix (if needed)
 → /review-retro
 → /retro
+→ /wire-integration (when moving from mock → real systems)
 
 ---
 
@@ -156,6 +190,27 @@ CORE PRINCIPLES:
    - Manual steps are kept where they improve understanding
    - Avoid unnecessary orchestration complexity
 
+9. Mock-first → real integration
+   - Features are built using mock data first
+   - Logic and UX are stabilised before real wiring
+   - Real integrations are introduced deliberately, not prematurely
+
+10. Security through constraint
+   - Do not rely on prompts for safety
+   - Limit what can happen if the system is manipulated
+   - Prefer:
+     - server-side enforcement
+     - constrained actions
+     - minimal blast radius
+
+11. Permission awareness (least privilege)
+   - Start with minimal capability
+   - Expand permissions only when required
+   - Separate:
+     - low-risk tasks (UI, formatting, local logic)
+     - high-risk tasks (APIs, auth, external systems)
+   - Maintain control even when tooling is coarse-grained
+
 ---
 
 SYSTEM CHARACTERISTICS:
@@ -166,6 +221,7 @@ SYSTEM CHARACTERISTICS:
 - Encourages learning through review + retro loops
 - Balances efficiency with control
 - Tool-agnostic (Cursor for build/evaluation, Codex for external review)
+- Supports secure integration workflows without forcing early complexity
 - Integrates lightweight automation via checks.sh without losing control
 
 ---
@@ -179,8 +235,11 @@ Project Anchor Doc → defines truth
 checks.sh → validates baseline  
 /project-review → challenges the piece  
 Cursor → evaluates findings in context  
+/security-audit → identifies risk  
+/security-fix → reduces risk  
 memory.md → captures lessons  
 /review-retro → structures learning  
-/retro → improves the system
+/retro → improves the system  
+/wire-integration → connects to the real world
 
 Repeat.
