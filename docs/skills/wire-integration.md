@@ -326,7 +326,7 @@ Confirm:
 
 Use this exact structure:
 
-<!-- ADD MARKDOWN CODE BLOCK HERE -->
+```markdown
 Wire Complete
 
 Integration introduced:
@@ -360,11 +360,11 @@ Deviations:
 
 Blockers:
 - [none or explanation]
-<!-- END MARKDOWN CODE BLOCK -->
+```
 
 If blocked or only partially completed, use:
 
-<!-- ADD MARKDOWN CODE BLOCK HERE -->
+```markdown
 Wire Partial
 
 Integration introduced:
@@ -398,7 +398,7 @@ Deviations:
 
 Blockers:
 - [what prevented safe completion]
-<!-- END MARKDOWN CODE BLOCK -->
+```
 
 ---
 
