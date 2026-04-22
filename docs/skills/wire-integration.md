@@ -57,7 +57,7 @@ Use a sandboxed / least-privilege setup where possible.
 
 This skill is **model-agnostic**:
 
-- it should work with any terminal-based coding agent
+- it should work with any coding agent
 - do not assume a specific tool brand
 - focus on the security posture, not the worker name
 
@@ -95,7 +95,7 @@ Examples:
 
 Preferred posture:
 
-- use a restricted terminal-based agent environment where possible
+- use a restricted environment where possible
 - start with the lowest practical permissions
 - expand only when the task proves it is necessary
 - prefer approval-first behavior where available
@@ -104,28 +104,29 @@ Preferred posture:
 
 Escalate in this order:
 
-1. **Read only**  
+1. **Read only**
    - inspect code and understand current behavior
 
-2. **Workspace write**  
+2. **Workspace write**
    - modify only files needed for the task
 
-3. **Command execution**  
+3. **Command execution**
    - only if required for build, typecheck, tests, or verification
 
-4. **Network access**  
+4. **Network access**
    - only if required by the task
 
-5. **Broader filesystem / external access**  
+5. **Broader filesystem / external access**
    - only if clearly necessary and explicitly justified
 
-### Rules
+### Environment-aware rules
 
-- Do not start with broad permissions by default
-- Do not widen access silently
-- If the environment supports explicit permission controls, begin with the most restrictive practical option
-- If the environment is coarse-grained, simulate least privilege through task constraints and manual approval discipline
-- If a task can be completed without shell, network, or broader access, keep those capabilities unused
+- If the environment supports **fine-grained permission controls**, begin with the most restrictive practical option and expand only when necessary.
+- If the environment is **coarse-grained**, simulate least privilege through task constraints and manual approval discipline.
+- If local file inspection depends on shell access in the current environment, allow **narrow shell usage for local file inspection only** rather than broad command freedom.
+- Do not allow network, installs, or unrelated commands unless the task clearly requires them.
+- Do not widen access silently.
+- If a task can be completed without shell, network, or broader access, keep those capabilities unused.
 
 ---
 
@@ -245,6 +246,9 @@ Before implementing, briefly state:
   - command execution
   - network access
   - broader external access
+- whether the environment is being treated as:
+  - fine-grained permission-controlled
+  - coarse-grained with manual constraints
 - why that permission level is justified for this task
 
 Then implement.
@@ -322,7 +326,7 @@ Confirm:
 
 Use this exact structure:
 
-```markdown
+<!-- ADD MARKDOWN CODE BLOCK HERE -->
 Wire Complete
 
 Integration introduced:
@@ -331,6 +335,7 @@ Integration introduced:
 Permission posture used:
 - [read-only / workspace write / command execution / network / broader external access]
 - [why it was necessary]
+- [fine-grained controls or coarse-grained constraints]
 
 Implemented:
 - [summary of changes]
@@ -355,11 +360,11 @@ Deviations:
 
 Blockers:
 - [none or explanation]
-```
+<!-- END MARKDOWN CODE BLOCK -->
 
 If blocked or only partially completed, use:
 
-```markdown
+<!-- ADD MARKDOWN CODE BLOCK HERE -->
 Wire Partial
 
 Integration introduced:
@@ -368,6 +373,7 @@ Integration introduced:
 Permission posture used:
 - [read-only / workspace write / command execution / network / broader external access]
 - [why it was necessary]
+- [fine-grained controls or coarse-grained constraints]
 
 Implemented:
 - [what was completed]
@@ -392,7 +398,7 @@ Deviations:
 
 Blockers:
 - [what prevented safe completion]
-```
+<!-- END MARKDOWN CODE BLOCK -->
 
 ---
 
@@ -414,5 +420,3 @@ Blockers:
 - Use **build-pass** or **build-pro** first to create and stabilise the feature in standard or mock-first mode
 - Use **security-audit** before and/or after wiring when trust boundaries matter
 - Use **security-fix** to implement targeted hardening after the integration is in place
-
-
