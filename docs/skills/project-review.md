@@ -62,6 +62,10 @@ Do not comment outside the intended scope.
 1. Read the changed code and enough surrounding context to understand intent.
 2. Validate behavior against the existing system design and data flow.
 3. Look for correctness issues, regressions, unclear ownership, and missing tests.
+   - When reviewing scripts or CI helpers, flag any shell steps that run `npx <tool>` if `<tool>` is not listed in package.json devDependencies or dependencies, as this introduces non-deterministic behaviour and offline/CI risk.
+   - Small full-stack / Next.js patterns:
+     - Flag duplicated allowlists (e.g. model IDs in server routes and client UI)
+     - Flag use of `NEXT_PUBLIC_*` values for auth, and distinguish dev-gate setups from real production auth
 4. Prioritise actionable findings by severity.
 5. Keep summaries brief and place findings first.
 
