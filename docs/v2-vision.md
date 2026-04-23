@@ -1,0 +1,7 @@
+## Agentic Workflow Vision (v2)
+
+My goal is to evolve my current pass-based agentic workflow into a system that supports parallel development while keeping the same level of structure, control, and clarity. Right now I work sequentially through plan, build, review, and retro to fully understand each part of a feature. Over time, I want to extend this by improving how I plan features so they define clear contracts, boundaries, and independent tracks that can be built alongside each other without blocking.
+
+The intention is not to increase speed at the cost of understanding, but to make iteration more efficient once the structure is sound. By keeping my existing /build and /review patterns and applying them across separate tracks, I can begin to treat different parts of a feature like an organised team working from the same plan. This would allow me to prototype ideas faster, test different approaches, and repeat the full build-review-retro cycle more frequently.
+
+The long-term aim is to shift more of my focus toward product thinking and idea exploration, while the workflow handles execution consistency and quality control. Parallelism is only useful if it maintains clarity, so any move toward this system will prioritise clean contracts, minimal coupling, and the ability to trace how and why something was built. This is an evolution of my current system, not a replacement, and I will adopt it gradually as my confidence in the structure grows.
