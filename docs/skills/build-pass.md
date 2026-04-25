@@ -11,6 +11,8 @@ You are **not** the planner. You do **not** redesign the feature. You implement 
 
 Companion: pass-based plans come from the [plan](../plan/SKILL.md) skill—treat the pasted plan as authoritative.
 
+If a `design.md` is present, treat it as supporting guidance for UI, UX, tone, hierarchy, and interaction patterns. The approved `/plan` remains the implementation contract.
+
 ---
 
 ## Core purpose
@@ -28,7 +30,7 @@ If parts of a pass already exist:
 
 ---
 
-## Mode (NEW)
+## Mode
 
 This skill supports two execution modes:
 
@@ -87,6 +89,8 @@ Interpret the plan using **only** sections relevant to the current pass. Treat l
 - Keep code readable and easy to review.
 - Treat anything outside the current pass as intentionally incomplete, not missing.
 - Prefer editor/search tools for code search; do not assume shell utilities (e.g. rg) are available.
+- When a `design.md` is present, align UI, layout, interaction, and polish decisions with it where relevant to the current pass.
+- Treat `design.md` as guidance only; do not use it to expand scope beyond the approved plan.
 
 **Never**
 
@@ -96,6 +100,9 @@ Interpret the plan using **only** sections relevant to the current pass. Treat l
 - Implement data before structure exists (when the plan sequences them that way).
 - Refactor unrelated areas.
 - Abstract prematurely.
+- Do not redesign the feature based on `design.md`.
+- Do not let `design.md` override the approved plan.
+- Do not introduce new behaviours only because they appear in `design.md`.
 
 ---
 
@@ -121,10 +128,14 @@ If repo reality conflicts with the plan:
 
 - Visual structure only; placeholders OK.
 - No real data wiring; no derived logic.
+- Align visual structure, grouping, hierarchy, and density with `design.md` if present.
+- Do not over-polish or introduce later-pass behaviour.
 
 ---
 
 **Pass 2 — Data wiring**
+
+When wiring tools into streamText or generateText, always include step control (e.g. stopWhen: stepCountIs(n)) so the model can continue after tool execution. Without this, the run may stop after the tool call and never produce a final response.
 
 ### Standard mode
 - Connect real sources; replace placeholders.
@@ -164,6 +175,8 @@ Examples of acceptable patterns:
 - Simplify and refine; improve clarity and consistency.
 - Do not introduce new feature scope.
 - Only refine and simplify what already exists.
+- Refine visual consistency, tone, and interaction details against `design.md` if present.
+- Do not introduce new design directions or product behaviour.
 
 ---
 
@@ -180,7 +193,7 @@ Examples of acceptable patterns:
 
 Verification should confirm correctness, not just visual output.
 
-**Pass 1:** Layout matches intent; reuse correct; not overbuilt.  
+**Pass 1:** Layout matches intended structure, approved plan, and any provided design.md guidance.
 
 **Pass 2:**  
 - Data shape matches expected real structure  
@@ -190,7 +203,7 @@ Verification should confirm correctness, not just visual output.
 
 **Pass 3:** Logic correct and readable; results match expectations; edge cases safe.  
 
-**Pass 4:** Feature cohesive; no unnecessary complexity; matches app patterns.  
+**Pass 4:** Feature feels cohesive, matches app patterns, and aligns with design.md if present.
 
 ---
 
@@ -223,7 +236,7 @@ Human review:
 - [what to verify]
 
 Notes:
-- [assumptions or small deviations]
+- [assumptions or small deviations; any design.md assumptions, conflicts, or deviations]
 
 Blockers:
 - [none or explanation]
