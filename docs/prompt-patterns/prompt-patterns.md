@@ -357,3 +357,49 @@ Summarise what should be carried into `/review-retro`:
 - Deferred findings
 - Rejected findings
 - Any reusable workflow lessons
+
+# Implement Selected Findings Prompt Template
+
+Goal:
+Implement a small set of validated review findings with minimal, targeted changes.
+
+Scope:
+- Only modify the relevant files for this change.
+- Do not expand scope beyond what is listed.
+- Do not refactor unrelated code.
+- Do not introduce new behaviour unless explicitly required.
+
+Context:
+- Changes are based on validated findings from external review + repo-aware validation.
+- Prefer smallest practical implementation.
+- Preserve existing behaviour unless the finding requires a change.
+
+Changes to implement:
+- [Finding / change 1]
+  - [Concrete action]
+- [Finding / change 2]
+  - [Concrete action]
+- [Finding / change 3]
+  - [Concrete action]
+
+Implementation rules:
+- Keep changes minimal and localised.
+- Do not duplicate logic unless intentional.
+- Do not remove existing functionality.
+- Maintain current patterns and style of the codebase.
+
+Constraints:
+- Keep existing:
+  - prompts
+  - tool behaviour
+  - APIs
+  - wiring
+- Only touch what is necessary to satisfy the listed changes.
+
+Output:
+- Apply the changes directly in the code.
+- Do not explain unless necessary.
+- Do not re-review or suggest additional improvements outside scope.
+
+Optional notes:
+- Add lightweight comments if needed to document intentional tradeoffs or maintenance considerations.
