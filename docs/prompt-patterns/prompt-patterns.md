@@ -261,3 +261,99 @@ Feature or output being evaluated:
 ### Output
 
 Return a clean, structured list of 3 evaluation checks that can be directly translated into code.
+
+# External Review Findings Validation Prompt
+
+Review the external AI findings against the actual codebase.
+
+Goal:
+Validate whether each finding is accurate, relevant, and worth acting on in this repo.
+
+Context:
+- This review follows an external AI review.
+- Treat the external review as a signal, not truth.
+- Ground every judgement in the actual project files.
+- Prefer the smallest practical fix.
+- Do not implement changes yet unless explicitly asked.
+
+Instructions:
+For each finding:
+1. Confirm whether it is accurate in this codebase.
+2. Explain the real impact in this implementation.
+3. Classify it as:
+   - Accept
+   - Partially accept
+   - Reject
+   - Defer
+4. Suggest the smallest practical change if accepted or partially accepted.
+5. Note if the finding is theoretical, out-of-scope, duplicated, or already handled.
+
+Project context:
+[Paste brief project/module context here]
+
+Review scope:
+[Paste files, feature, branch, or implementation area here]
+
+External review findings:
+```text
+
+[Paste findings here]
+
+```
+
+Output format:
+
+## Findings Validation
+
+### Finding 1: [short title]
+Status: Accept / Partially accept / Reject / Defer
+
+Accuracy:
+[Is it true in this repo? Reference files/functions.]
+
+Impact:
+[What could actually happen here? Keep it grounded.]
+
+Smallest practical change:
+[Minimal fix, or "No change recommended".]
+
+Notes:
+[Any scope/context/security/workflow notes.]
+
+---
+
+### Finding 2: [short title]
+Status: Accept / Partially accept / Reject / Defer
+
+Accuracy:
+[Is it true in this repo? Reference files/functions.]
+
+Impact:
+[What could actually happen here? Keep it grounded.]
+
+Smallest practical change:
+[Minimal fix, or "No change recommended".]
+
+Notes:
+[Any scope/context/security/workflow notes.]
+
+---
+
+## Recommended Action Plan
+
+### Fix now
+- [Only items worth implementing immediately]
+
+### Defer
+- [Valid findings that should wait]
+
+### No action
+- [Rejected or intentionally accepted risks]
+
+## Review-Retro Notes
+
+Summarise what should be carried into `/review-retro`:
+- Accepted findings
+- Deferred findings
+- Rejected findings
+- Any reusable workflow lessons
