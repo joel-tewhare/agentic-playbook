@@ -23,6 +23,29 @@ This skill defines the checks file. It does not run the checks unless explicitly
 - Keep the file simple, readable, and project-specific.
 - If a useful check is missing, add a short comment or note rather than inventing a command.
 
+## Existing file behaviour (high priority)
+
+If a `checks.sh` file already exists:
+
+- Treat the existing file as the source of truth.
+- Do NOT replace the file with a new template.
+- Preserve:
+  - existing structure
+  - custom sections (manual reminders, LLM eval reminders)
+  - conditional checks already implemented
+- Only make minimal, justified improvements, such as:
+  - adding missing deterministic checks if clearly absent
+  - improving wording for clarity
+  - adding project-specific notes if missing
+
+Do NOT:
+
+- remove custom sections
+- simplify the file to a base template
+- delete evaluation or manual verification sections
+
+If unsure, prefer leaving the file unchanged and summarise suggested improvements instead of applying them.
+
 ## Inputs to inspect
 
 - `package.json`
