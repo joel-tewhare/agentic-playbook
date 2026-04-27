@@ -1,388 +1,380 @@
-AGENTIC PLAYBOOK — WORKFLOW
+## AGENTIC PLAYBOOK — WORKFLOW
 
 This document defines how the system is executed in practice using CLI shortcuts and structured outputs.
 
 It is the operational layer that sits on top of the system-intro.
 
-The workflow follows a consistent pattern:  
+The workflow follows a consistent pattern:
+
 feature → plan → build → validate → review → improve
 
 All stages write outputs to versioned docs to maintain traceability.
 
 ---
 
-WORKFLOW OVERVIEW
+## WORKFLOW OVERVIEW
 
-Feature idea  
-→ Preplan  
-→ Plan  
-→ Build (pass-based)  
-→ Human review (per pass)  
-→ Checks  
-→ Evals (if applicable)  
-→ External review  
-→ Validate findings  
-→ Implement fixes  
-→ Re-run checks + evals  
-→ Review retro  
-→ Full retro  
-→ Retro implementation  
+Feature idea
+→ Preplan
+→ Plan
+→ Build (pass-based)
+→ Human review (per pass)
+→ Checks
+→ Evals (if applicable)
+→ External review + validation
+→ Implement fixes
+→ Re-run checks + evals
+→ Review retro
+→ Full retro
+→ Retro implementation
 → Wire integration (when required)
 
 ---
 
-1. ENVIRONMENT SETUP
+## ENVIRONMENT SETUP
 
-Goal:  
+Goal:
 Ensure a consistent CLI environment where all stages can be executed and outputs are written to the repo.
 
 Requirements:
 
-- Shell configured (Oh My Zsh or equivalent)
-- Cursor Agent CLI available (agent)
-- Codex CLI available (codex exec)
-- PATH includes required binaries
+* Shell configured (Oh My Zsh or equivalent)
+* Cursor Agent CLI available (`agent`)
+* Codex CLI available (`codex exec`)
+* PATH includes required binaries
 
 Pattern:
 
-- Non-interactive runs
-- File-based outputs
-- Feature name used to thread all artifacts
+* Non-interactive runs
+* File-based outputs
+* Feature name used to thread all artifacts
 
 ---
 
-1. PREPLAN
+## PREPLAN
 
-Goal:  
+Goal:
 Convert a feature idea into a structured product and UX brief.
 
-This step clarifies:
+Clarifies:
 
-- intent
-- flows
-- scope
-- constraints
+* intent
+* flows
+* scope
+* constraints
 
-Output:  
-docs/preplans/.md
+Output:
+docs/preplans/<feature>.md
 
-Command:  
+Command:
 ai-preplan
 
 ---
 
-1. PLAN
+## PLAN
 
-Goal:  
+Goal:
 Break the feature into clear, pass-based implementation stages.
 
 Defines:
 
-- UI / layout
-- data requirements
-- logic boundaries
-- polish considerations
+* UI / layout
+* data requirements
+* logic boundaries
+* polish considerations
 
 No code is written here.
 
-Output:  
-docs/plans/.md
+Output:
+docs/plans/<feature>.md
 
-Command:  
+Command:
 ai-plan
 
 ---
 
-1. BUILD (PASS-BASED)
+## BUILD (PASS-BASED)
 
-Goal:  
+Goal:
 Implement the feature in controlled, isolated passes.
 
 Pass structure:
 
-1. UI / Layout
-2. Data Wiring (mock-first by default)
-3. Derived Logic
-4. Final Polish
+* UI / Layout
+* Data Wiring (mock-first by default)
+* Derived Logic
+* Final Polish
 
 Each pass:
 
-- is executed independently
-- avoids scope bleed
-- writes a summary
+* is executed independently
+* avoids scope bleed
+* writes a summary
 
-Output:  
-docs/builds/-pass-.md
+Output:
+docs/builds/<feature>-pass-<n>.md
 
-Command:  
+Command:
 ai-build-pass
 
-Alternative:  
-ai-build-pro  
-Used when running multiple passes in sequence
+Alternative:
+ai-build-pro (runs all passes in sequence)
 
 ---
 
-1. HUMAN REVIEW (PER PASS)
+## HUMAN REVIEW (PER PASS)
 
-Goal:  
+Goal:
 Pause after each build step to validate before continuing.
 
 Focus:
 
-- alignment with intent
-- correctness of behaviour
-- clarity of implementation
-- unexpected issues
+* alignment with intent
+* correctness of behaviour
+* clarity of implementation
+* unexpected issues
 
 Actions:
 
-- proceed
-- adjust implementation
-- capture reusable insights in [memory.md](http://memory.md)
+* proceed
+* adjust implementation
+* capture reusable insights in memory.md
 
-This step is mandatory for maintaining control.
+This step is mandatory.
 
 ---
 
-1. CHECKS (DETERMINISTIC VALIDATION)
+## CHECKS (DETERMINISTIC VALIDATION)
 
-Goal:  
+Goal:
 Validate baseline correctness of the system.
 
 Includes:
 
-- build
-- typecheck
-- lint
-- tests (if available)
+* build
+* typecheck
+* lint
+* tests (if available)
 
-Step A: Create checks script (once per project or when needed)  
-Command:  
+Step A: Create checks script
+Command:
 ai-checks-create
 
-Step B: Run checks and save output  
-Output:  
-docs/checks/-[checks.md](http://checks.md)
+Step B: Run checks and save output
+Output:
+docs/checks/<feature>-checks.md
 
-Command:  
+Command:
 ai-checks
 
 ---
 
-1. EVALS (MODEL / TOOL BEHAVIOUR)
+## EVALS (MODEL / TOOL BEHAVIOUR)
 
-Goal:  
+Goal:
 Validate behaviour that deterministic checks cannot catch.
 
 Used for:
 
-- tool usage
-- JSON structure
-- response correctness
-- edge cases
+* tool usage
+* JSON structure
+* response correctness
+* edge cases
 
-Step A: Create eval script (when needed)  
-Command:  
+Step A: Create eval script
+Command:
 ai-evals-create
 
-Step B: Run evals  
-Output:  
-docs/evals/-[evals.md](http://evals.md)
+Step B: Run evals
+Output:
+docs/evals/<feature>-evals.md
 
-Command:  
+Command:
 ai-evals
 
-Note:  
-Evals are optional and used primarily for AI-integrated features.
+Note:
+Evals are optional and mainly used for AI-integrated features.
 
 ---
 
-1. EXTERNAL REVIEW
+## EXTERNAL REVIEW + VALIDATION
 
-Goal:  
-Get an independent review using a separate model.
+Goal:
+Run an independent review and immediately validate findings against the real codebase.
 
-Inputs:
+This combines:
 
-- current code
-- checks output
-- eval output (if present)
+* external AI review (Codex)
+* validation pass (Cursor)
 
-Focus:
+Process:
 
-- correctness
-- architecture
-- data handling
-- contract alignment
+* external review generates findings
+* validation classifies each finding:
 
-Output:  
-docs/reviews/-[review.md](http://review.md)
+  * Accept
+  * Partially accept
+  * Reject
+  * Defer
 
-Command:  
+Only grounded, relevant findings move forward.
+
+Output:
+
+* docs/reviews/<feature>-review.md
+* docs/review-validations/<feature>-validation.md
+
+Command:
 ai-review
 
----
+Important:
 
-1. VALIDATE FINDINGS
-
-Goal:  
-Assess external review findings in the context of the actual system.
-
-Each finding is classified as:
-
-- Accept
-- Partial
-- Reject
-- Defer
-
-Only real, relevant issues move forward.
-
-Output:  
-docs/review-validations/-[validation.md](http://validation.md)
-
-Command:  
-ai-review-validate
+* this step performs analysis only
+* no fixes are implemented here
+* human decision-making follows
 
 ---
 
-1. IMPLEMENT FIXES
+## IMPLEMENT FIXES
 
-Goal:  
+Goal:
 Apply only the accepted “Fix now” items.
 
 Rules:
 
-- minimal changes
-- no unnecessary refactors
-- maintain system integrity
+* minimal changes
+* no unnecessary refactors
+* maintain system integrity
 
-Output:  
-docs/review-implementations/-[implementation.md](http://implementation.md)
+Output:
+docs/review-implementations/<feature>-implementation.md
 
-Command:  
+Command:
 ai-review-implement
 
 After implementation:
 
-- checks are re-run
-- evals are re-run (if applicable)
+* checks are re-run
+* evals are re-run (if applicable)
 
 ---
 
-1. REVIEW RETRO
+## REVIEW RETRO
 
-Goal:  
+Goal:
 Extract structured learnings from the review cycle.
 
 Captures:
 
-- what was correct
-- what was missed
-- recurring patterns
+* what was correct
+* what was missed
+* recurring patterns
 
-Feeds into [memory.md](http://memory.md).
+Feeds into memory.md.
 
-Output:  
-docs/review-retros/-[review-retro.md](http://review-retro.md)
+Output:
+docs/review-retros/<feature>-review-retro.md
 
-Command:  
+Command:
 ai-review-retro
+
+Note:
+This step may also run as part of ai-retro-closing.
 
 ---
 
-1. FULL RETRO (WORKFLOW IMPROVEMENT)
+## FULL RETRO (WORKFLOW IMPROVEMENT)
 
-Goal:  
+Goal:
 Refine the system itself.
 
 Updates:
 
-- skill files
-- instruction patterns
-- workflow structure
+* skill files
+* instruction patterns
+* workflow structure
 
 No product code changes.
 
-Output:  
-docs/review-retros/-[retro.md](http://retro.md)
+Output:
+docs/review-retros/<feature>-retro.md
 
-Command:  
+Command:
 ai-retro-closing
 
 ---
 
-1. RETRO IMPLEMENTATION
+## RETRO IMPLEMENTATION
 
-Goal:  
+Goal:
 Apply improvements identified in the retro.
 
 Scope:
 
-- [memory.md](http://memory.md)
-- skill files
-- workflow docs
+* memory.md
+* skill files
+* workflow docs
 
 Explicitly excludes:
 
-- feature/application code
+* feature/application code
 
-Output:  
-docs/review-retros/-[retro-implementation.md](http://retro-implementation.md)
+Output:
+docs/review-retros/<feature>-retro-implementation.md
 
-Command:  
+Command:
 ai-retro-implement
 
 ---
 
-1. WIRE INTEGRATION (MOCK → REAL)
+## WIRE INTEGRATION (MOCK → REAL)
 
-Goal:  
+Goal:
 Replace mock data with real-world integrations.
 
 Used when:
 
-- feature is stable
-- logic and UX are validated
+* feature is stable
+* logic and UX are validated
 
 Includes:
 
-- API integration
-- authentication
-- environment variables
-- error handling
+* API integration
+* authentication
+* environment variables
+* error handling
 
 Constraints:
 
-- minimal blast radius
-- preserve existing UI and logic
-- maintain clear boundaries
+* minimal blast radius
+* preserve existing UI and logic
+* maintain clear boundaries
 
-Command:  
+Command:
 ai-wire-integration
 
 ---
 
-WORKFLOW CHARACTERISTICS
+## WORKFLOW CHARACTERISTICS
 
-- Feature name threads all artifacts across docs
-- Each stage produces a persistent output
-- Human review gates progression
-- External review provides a second perspective
-- Fixes are minimal and targeted
-- Learning is captured and reused
-- Integration is delayed until safe
+* Feature name threads all artifacts across docs
+* Each stage produces a persistent output
+* Human review gates progression
+* External review is validated before action
+* Fixes are minimal and targeted
+* Learning is captured and reused
+* Integration is delayed until safe
 
 ---
 
-SIMPLE LOOP
+## SIMPLE LOOP
 
-Idea  
-→ Plan  
-→ Build  
-→ Review  
-→ Validate  
-→ Improve  
+Idea
+→ Plan
+→ Build
+→ Review
+→ Validate
+→ Improve
 → Integrate
 
 Repeat.

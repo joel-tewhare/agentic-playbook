@@ -53,6 +53,7 @@ Each stage has a specific role:
 ### 1. Project Anchor (Human-defined truth)
 
 Defines:
+
 - purpose
 - users
 - flows
@@ -69,6 +70,7 @@ This is the source of truth before any AI involvement.
 Translates intent into structured system understanding.
 
 Clarifies:
+
 - flows
 - entities
 - interactions
@@ -94,12 +96,13 @@ No implementation yet, only structure.
 
 Implementation is broken into isolated passes:
 
-1. UI / Layout  
-2. Data Wiring (supports mock-first approach)  
-3. Derived Logic  
-4. Final Polish  
+1. UI / Layout
+2. Data Wiring (supports mock-first approach)
+3. Derived Logic
+4. Final Polish
 
 Each pass has:
+
 - a single responsibility
 - strict scope boundaries
 
@@ -112,12 +115,14 @@ This prevents mixed concerns and reduces complexity.
 A deliberate pause to assess the current state before continuing.
 
 Focus areas:
+
 - alignment with intent
 - clarity of implementation
 - correctness of behaviour
 - unexpected issues or edge cases
 
 The human decides whether to:
+
 - proceed
 - adjust
 - capture learnings
@@ -160,12 +165,14 @@ Review findings are:
 - assessed for real impact
 
 Each finding is:
+
 - accepted
 - partially accepted
 - rejected
 - deferred
 
 Fixes are:
+
 - minimal
 - targeted
 - intentional
@@ -229,36 +236,42 @@ This is done deliberately, not during initial build.
 ## CORE PRINCIPLES
 
 ### 1. Human-led intent
+
 AI does not decide product direction.  
 The human defines system truth.
 
 ---
 
 ### 2. Chunked execution
+
 Work is broken into manageable units.  
 Avoid full-system builds in one pass.
 
 ---
 
 ### 3. Pass isolation
+
 Each build pass has a clear purpose.  
 Prevents mixed concerns and messy output.
 
 ---
 
 ### 4. Localised decision-making
+
 Assumptions are resolved at the feature level.  
 Reduces cascading rework.
 
 ---
 
 ### 5. External validation
+
 A second system is used to challenge assumptions.  
 Prevents tunnel vision.
 
 ---
 
 ### 6. Feedback loops + memory
+
 Work improves over time through:
 
 Review → Memory → Reflection → System updates
@@ -266,18 +279,21 @@ Review → Memory → Reflection → System updates
 ---
 
 ### 7. Controlled autonomy
+
 AI is used for speed, not authority.  
 The human remains the decision-maker.
 
 ---
 
 ### 8. Simplicity over automation
+
 Manual steps are kept where they improve understanding.  
 Avoid unnecessary orchestration.
 
 ---
 
 ### 9. Mock-first → real integration
+
 Features are built safely first, then connected to real systems later.
 
 - stabilise UX and logic first
@@ -286,9 +302,11 @@ Features are built safely first, then connected to real systems later.
 ---
 
 ### 10. Security through constraint
+
 Do not rely on prompts for safety.
 
 Instead:
+
 - limit capabilities
 - reduce blast radius
 - enforce rules server-side
@@ -296,9 +314,11 @@ Instead:
 ---
 
 ### 11. Permission awareness (least privilege)
+
 Start with minimal access.
 
 Expand only when required, especially for:
+
 - APIs
 - external systems
 - sensitive data
