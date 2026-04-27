@@ -83,6 +83,14 @@ Prioritize review items that change runtime semantics (e.g. error propagation be
 - Do not repeat ideas already stated in other sections
 - Keep notes concise, high-signal, and directly usable
 - Prioritise deeper insights over generic advice
+- If the provided `memory.md` already contains the same rule (same idea in an existing section), do not repeat full append-ready bullets. Instead add **Memory alignment**: one line naming the existing heading(s) or bullets, and only append genuinely new nuance.
+
+### Memory outcome (required)
+End every review-retro output with exactly one of:
+- **Memory update:** Added new rule(s) — briefly name the section(s) or new bullets.
+- **Memory update:** No new entries (merged into existing rules) — name the heading(s) or bullets touched.
+
+This removes ambiguity for `/retro` and humans; do not leave it implicit whether `memory.md` changed.
 
 ---
 
@@ -91,6 +99,12 @@ Prioritize review items that change runtime semantics (e.g. error propagation be
 - Do not overwrite or restructure existing content
 - Maintain consistency with formatting and ordering already present
 - If no clear section exists, place notes in the closest relevant section without creating unnecessary new headings
+- After updating `memory.md`, if nothing new was added because content merged into existing bullets, say so in the **Memory outcome** line so `/retro` and humans do not hunt for duplicate entries.
+
+---
+
+## Workflow (human)
+- `/review-retro` may be invoked by chained shortcuts (e.g. `/ai-retro-closing`). Avoid running it twice in the same closeout cycle; duplicate runs inflate artefacts, repeat candidate-memory blocks, and waste follow-up time.
 
 ---
 

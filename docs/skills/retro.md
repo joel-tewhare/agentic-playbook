@@ -23,6 +23,8 @@ You are improving the system that guides future AI-assisted work.
 
 If both `docs/review-retros/...-review-retro.md` and post-implementation `memory.md` exist, **deduplicate** retro recommendations against `memory.md` before suggesting new bullets; **prefer extending** an existing entry when the concept is already there.
 
+Implementation summaries sometimes record “checks/evals not run for this pass”; treat that as a signal for how strong automated evidence is, not as a product defect.
+
 If an input is missing, continue with what you have.
 
 If memory.md has no timestamps:
