@@ -11,6 +11,8 @@ You are **not** the planner. You do **not** redesign the feature. You implement 
 
 Companion: pass-based plans come from the [plan](../plan/SKILL.md) skill—treat the pasted plan as authoritative. Behaviour matches [build](../build/SKILL.md) except execution is **continuous** (no stop between passes for human review).
 
+If a `design.md` is present, treat it as supporting guidance for UI, UX, tone, hierarchy, and interaction patterns. The approved `/plan` remains the implementation contract.
+
 ---
 
 ## Core purpose
@@ -88,6 +90,9 @@ Interpret the plan using **pass-specific** sections. Treat later-pass work as **
 - Prefer existing repo patterns; keep changes **minimal and readable**.
 - Maintain **internal** pass boundaries (same responsibilities as `/build`).
 - Treat anything outside the current pass as intentionally incomplete, not missing.
+- When a `design.md` is present, align UI, layout, interaction, and polish decisions with it where relevant to the current pass.
+- Treat `design.md` as guidance only; do not use it to expand scope beyond the approved plan.
+- If a plan file path is provided, read it before starting execution and use it as the contract for all passes.
 
 **Never**
 
@@ -96,6 +101,9 @@ Interpret the plan using **pass-specific** sections. Treat later-pass work as **
 - Introduce responsibilities of later passes before completing the current pass.
 - Refactor unrelated areas.
 - Introduce unnecessary abstraction or abstraction creep.
+- Do not redesign the feature based on `design.md`.
+- Do not let `design.md` override the approved plan.
+- Do not introduce new behaviours only because they appear in `design.md`.
 
 ---
 
@@ -120,6 +128,8 @@ If repo reality conflicts with the plan:
 
 - Visual structure; placeholders OK.
 - No real data wiring; no derived logic.
+- Align visual structure, grouping, hierarchy, and density with `design.md` if present.
+- Do not over-polish or introduce later-pass behaviour.
 
 **Pass 2 — Data wiring**
 
@@ -154,6 +164,8 @@ Examples of acceptable patterns:
 - Refine, simplify, prove correctness.
 - Do not introduce new feature scope.
 - Only refine and simplify what already exists.
+- Refine visual consistency, tone, and interaction details against `design.md` if present.
+- Do not introduce new design directions or product behaviour.
 
 ---
 
@@ -169,6 +181,7 @@ Before continuing to the next pass, confirm:
 - Results match expected behaviour for this pass
 - After wiring async user actions, ensure promise rejections are either handled at the call site or not thrown if errors are already represented via UI state. Avoid unhandled promises (e.g. `void fn()` with rethrow).
 - Safe to proceed
+- If a `design.md` is present, confirm the current pass aligns with its relevant guidance without expanding scope.
 
 Additional pass-specific checks:
 
@@ -203,12 +216,20 @@ Confirm:
 - Logic is correct and results match expected behaviour
 - Implementation is clean and consistent with project patterns
 - If mock-first mode was used, the feature remains structurally ready for later real integration without broad UI rewrites
+- If a `design.md` is present, confirm the completed feature aligns with its relevant UX, layout, interaction, and tone guidance
 
 ---
 
 ## Input expectation
 
-User pastes an **approved /plan** output.
+User provides either:
+- a pasted approved /plan output, or
+- a path to an approved plan file.
+
+If a plan file path is provided:
+- read the file first
+- treat its contents as the approved /plan output
+- do not ask the user to paste the plan
 
 Do not ask for additional instructions. Start from plan + repo state.
 
@@ -243,7 +264,7 @@ Review points:
 - what to check
 
 Deviations:
-- none or explanation
+- none or explanation (include any design.md assumptions, conflicts, or deviations)
 
 Blockers:
 - none or explanation
