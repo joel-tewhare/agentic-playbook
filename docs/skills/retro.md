@@ -21,6 +21,8 @@ You are improving the system that guides future AI-assisted work.
 2. Any retro artifacts (review-retro output, secondary review findings, notes)
 3. Relevant skill files (only if a change is clearly warranted)
 
+If both `docs/review-retros/...-review-retro.md` and post-implementation `memory.md` exist, **deduplicate** retro recommendations against `memory.md` before suggesting new bullets; **prefer extending** an existing entry when the concept is already there.
+
 If an input is missing, continue with what you have.
 
 If memory.md has no timestamps:
@@ -36,6 +38,8 @@ If memory.md has no timestamps:
 - **Naming drift**: variables no longer matching real data shape
 - **Workflow drag**: unnecessary refactors, recovery patterns, missing checkpoints
 - **Missed invariants**: rules that should be enforced across multiple paths but weren’t
+- **Design drift**: repeated inconsistencies between intended UX (from design.md) and implemented UI, layout, or interaction patterns
+- **UX confusion**: patterns where users or reviewers misinterpret behaviour due to unclear hierarchy, interaction flow, or state feedback
 
 ## Priority rule (critical)
 
@@ -43,6 +47,7 @@ Prioritise improvements that:
 1. Prevent correctness issues
 2. Strengthen domain invariants or cross-path guarantees
 3. Improve build/plan/review behaviour
+4. Prevent repeated UX or design inconsistencies when they affect usability, clarity, or user trust
 
 Only then consider:
 - wording clarity
@@ -66,6 +71,9 @@ Only suggest changes when:
 
 Avoid repeating previous retro suggestions unless they are still unresolved.
 
+- When design.md exists, use it as a reference point for identifying repeated UX or interaction issues
+- Do not suggest new design directions unless supported by repeated evidence across builds
+
 ## Output format (required)
 
 ### Keep
@@ -88,6 +96,10 @@ Guidelines:
 - Do not rewrite entire files
 - Focus on small, high-leverage edits
 - Quote exact wording to add/change
+- Include design-related updates only when:
+  - issues are repeated across builds or reviews
+  - they can be resolved with small, clear constraints (e.g. layout rules, interaction patterns)
+  - they improve clarity, usability, or consistency
 
 For each suggestion include:
 
@@ -101,6 +113,8 @@ For each suggestion include:
 - Are we improving behaviour (not just wording)?
 - Are we avoiding duplication of existing rules?
 - Are we prioritising invariants and correctness over structure?
+- Are any design-related suggestions grounded in repeated evidence rather than one-off preference?
+- Are we avoiding turning retro into general design critique?
 
 If unsure:
 → default to **Keep**
