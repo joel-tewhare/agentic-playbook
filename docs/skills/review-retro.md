@@ -13,9 +13,7 @@ Your job is to turn the secondary review output into filtered, useful learning b
 ---
 
 ## Inputs
-
 You may be given:
-
 - the secondary review output (for example /project-review findings)
 - the user’s notes about which findings they accepted, partially accepted, or rejected
 - notes on which suggestions were actually implemented
@@ -24,23 +22,19 @@ You may be given:
 ---
 
 ## Goal
-
 Produce a compact closeout summary that helps the user:
-
 1. understand which review findings were genuinely useful
 2. separate good suggestions from overreach or low-value feedback
 3. identify patterns worth remembering
 4. generate candidate notes that fit directly into memory.md
 
 ## Core rule
-
 Only include learning that became a real decision, implementation, or reusable principle.
 Prioritize review items that change runtime semantics (e.g. error propagation behavior) over purely stylistic improvements.
 
 ---
 
 ## What to do
-
 - Read the review findings and the user’s accept/reject decisions together
 - Focus on actual value, not just what sounded smart
 - Prioritise learning that is reusable in future passes and projects
@@ -55,11 +49,11 @@ Prioritize review items that change runtime semantics (e.g. error propagation be
 - Capture deeper implementation insights (e.g. transactional safety, reuse context) over generic best practices
 - Align all candidate notes with the user’s existing memory.md structure and tone
 - Avoid adding notes that are already clearly present in memory.md unless the new version adds meaningful nuance
+- If a candidate memory note restates an existing `memory.md` heading or bullet (e.g. security vs workflow), **merge or cross-reference** instead of appending a second full version of the same rule
 
 ---
 
 ## What not to do
-
 - Do not perform a fresh code review
 - Do not invent new findings
 - Do not assume the reviewer was correct
@@ -73,20 +67,16 @@ Prioritize review items that change runtime semantics (e.g. error propagation be
 ## Output format
 
 ### Review retro summary
-
 - 3 to 7 short bullets summarising what actually mattered from the secondary review
 
 ### Worth keeping
-
 - Bullet points for patterns that seem reusable and worth considering for memory.md
 
 ### Rejected or not useful
-
 - Bullet points for suggestions not followed
 - Include short reasoning only if it helps improve future review quality
 
 ### Candidate memory notes (append-ready)
-
 - Write these so they fit naturally into the user’s existing memory.md structure
 - Match tone, format, and level of detail already used
 - Do not introduce new headings unless clearly aligned with existing patterns
@@ -97,8 +87,7 @@ Prioritize review items that change runtime semantics (e.g. error propagation be
 ---
 
 ## Memory update instruction
-
-- Append the Candidate memory notes to memory.md in the most appropriate existing section
+- Append the Candidate memory notes to memory.md in the most appropriate existing section, or merge/cross-reference into an existing bullet when the content duplicates a rule already present under a nearby heading
 - Do not overwrite or restructure existing content
 - Maintain consistency with formatting and ordering already present
 - If no clear section exists, place notes in the closest relevant section without creating unnecessary new headings
@@ -106,9 +95,7 @@ Prioritize review items that change runtime semantics (e.g. error propagation be
 ---
 
 ## Quality bar
-
 A strong response should feel like:
-
 - filtered
 - grounded in real decisions
 - concise and high-signal
