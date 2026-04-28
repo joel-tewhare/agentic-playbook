@@ -21,12 +21,12 @@ When invoked, produce **only** the plan—**no code**. Follow the rules and outp
 
 ### SUPPORTING CONTEXT RULES
 
-- If supporting context files are provided or referenced (e.g. `mocks.md`, wireframes, feature-support folder), review them **before** generating the plan.
+- If supporting context files are provided or referenced (e.g. `mocks.md`, wireframes, `docs/features/support-docs/` or another path your project documents for planning assets), review them **before** generating the plan.
 - Supporting context may include:
   - mock data definitions (e.g. ToolResult, ProposedAction)
   - wireframes or layout images
   - PDFs or templates (e.g. packing slip examples)
-  - feature-support docs
+  - support-docs bundles when the project defines them (e.g. `docs/features/support-docs/` with `mocks.md`, wireframes, template images)
 - Treat these as sources of:
   - data contracts
   - UI structure

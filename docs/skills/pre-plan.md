@@ -52,6 +52,7 @@ SUPPORTING CONTEXT RULES
 - If supporting context conflicts with the user’s latest message, prefer the user’s latest message and note the conflict as an open assumption.
 - If useful supporting context appears missing or unclear, ask one brief clarification question.
 - When the project has a known supporting context folder (convention established by the user or project docs), you may read files in that folder subject to the same rules: planning/design/mock/reference assets only.
+- Use the folder path the project actually documents (e.g. `docs/features/support-docs/` for mocks and wireframes in some repos). Do not assume a different name such as `feature-support` unless the user or anchor explicitly uses it.
 
 ---
 
