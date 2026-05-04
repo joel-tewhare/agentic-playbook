@@ -87,8 +87,9 @@ Prioritize review items that change runtime semantics (e.g. error propagation be
 
 ### Memory outcome (required)
 End every review-retro output with exactly one of:
-- **Memory update:** Added new rule(s) — briefly name the section(s) or new bullets.
-- **Memory update:** No new entries (merged into existing rules) — name the heading(s) or bullets touched.
+- **Memory update:** **Added** — new rule(s) appended to `memory.md`; briefly name the section(s) or bullets.
+- **Memory update:** **Merged** — name the heading(s) or bullets actually **edited** in `memory.md` during this invocation (e.g. extended or folded candidates into existing text). Use **Merged** only when the file changed; if it did not, use **Deferred**. Do not write "merged into existing rules" (or equivalent) unless `memory.md` was edited in this invocation.
+- **Memory update:** **Deferred** — reconcile later in `/retro`; name the section(s) or candidates. Use when `memory.md` was not edited here but nuance should carry forward.
 
 This removes ambiguity for `/retro` and humans; do not leave it implicit whether `memory.md` changed.
 
@@ -99,7 +100,7 @@ This removes ambiguity for `/retro` and humans; do not leave it implicit whether
 - Do not overwrite or restructure existing content
 - Maintain consistency with formatting and ordering already present
 - If no clear section exists, place notes in the closest relevant section without creating unnecessary new headings
-- After updating `memory.md`, if nothing new was added because content merged into existing bullets, say so in the **Memory outcome** line so `/retro` and humans do not hunt for duplicate entries.
+- After updating `memory.md`, if nothing new was added because content folded into existing bullets, report **Merged** (not **Added**) in the **Memory outcome** line so `/retro` and humans do not hunt for duplicate entries.
 
 ---
 

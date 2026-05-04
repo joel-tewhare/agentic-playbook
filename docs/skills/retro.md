@@ -18,10 +18,12 @@ You are improving the system that guides future AI-assisted work.
 ## Inputs to check (in order)
 
 1. `memory.md` (prioritise newest additions)
-2. Any retro artifacts (review-retro output, secondary review findings, notes)
+2. Retro artifacts (review-retro output, secondary review findings, notes). Paths such as `docs/review-retros/...-review-retro.md` may hold **candidate memory notes** that never reached `memory.md`.
 3. Relevant skill files (only if a change is clearly warranted)
 
-If both `docs/review-retros/...-review-retro.md` and post-implementation `memory.md` exist, **deduplicate** retro recommendations against `memory.md` before suggesting new bullets; **prefer extending** an existing entry when the concept is already there.
+Reconcile those candidates in `/retro`: extend existing bullets, add minimal new bullets where needed, or **skip** each with a brief rationale so guidance does not drift between artefact and `memory.md`.
+
+When both artefact and post-implementation `memory.md` exist, **deduplicate** against `memory.md` before suggesting new bullets; **prefer extending** an existing entry when the concept is already there.
 
 Implementation summaries sometimes record “checks/evals not run for this pass”; treat that as a signal for how strong automated evidence is, not as a product defect.
 
