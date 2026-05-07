@@ -27,6 +27,10 @@ When both artefact and post-implementation `memory.md` exist, **deduplicate** ag
 
 Implementation summaries sometimes record “checks/evals not run for this pass”; treat that as a signal for how strong automated evidence is, not as a product defect.
 
+Distinguish between earlier green artefacts, post-fix verification evidence, manual smoke validation, and implementation claims that were not re-verified after changes. Treat verification timing as workflow evidence, not merely pass/fail state.
+
+If an implementation artefact disclaims reruns while review-retro cites passing runs, treat as **reconciliation**: confirm both refer to the same revision or label one artefact as authoritative.
+
 If an input is missing, continue with what you have.
 
 If memory.md has no timestamps:

@@ -38,10 +38,12 @@ Prioritize review items that change runtime semantics (e.g. error propagation be
 - Read the review findings and the user’s accept/reject decisions together
 - Focus on actual value, not just what sounded smart
 - Prioritise learning that is reusable in future passes and projects
+- Treat security and trust-boundary findings as valid inputs when they produced real decisions, hardening, deployment assumptions, reusable enforcement lessons, or blast-radius lessons
 - Distinguish between:
   - accepted and implemented
   - accepted but not implemented
   - rejected
+- Distinguish implemented fixes from fixes subsequently verified through checks, evals, or manual smoke testing; call out skipped, stale, or earlier-only verification evidence
 - Look for repeated patterns, not one-off noise
 - Filter aggressively — fewer high-quality insights is better than many weak ones
 - Avoid repeating the same idea across sections
@@ -107,6 +109,7 @@ This removes ambiguity for `/retro` and humans; do not leave it implicit whether
 ## Workflow (human)
 - `/review-retro` may be invoked by chained shortcuts (e.g. `/ai-retro-closing`). Avoid running it twice in the same closeout cycle; duplicate runs inflate artefacts, repeat candidate-memory blocks, and waste follow-up time.
 - When the workspace is writable, close the loop in the same session: implementation → validation → review-retro → merge **Candidate memory notes** into `memory.md` (or `/retro`). If `memory.md` cannot be updated here (e.g. read-only environment), record **Memory:** pending (or applied in commit …) on the review-retro artefact so reconciliation is not ambiguous.
+- When the implementation summary says checks/evals were not rerun in that task, still record **where** current verification lives (e.g. paths to updated checks/evals logs or “pending”) so `/retro` does not see conflicting snapshots.
 
 ---
 
