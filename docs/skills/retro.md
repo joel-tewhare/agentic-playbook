@@ -48,6 +48,7 @@ If memory.md has no timestamps:
 - **Missed invariants**: rules that should be enforced across multiple paths but weren’t
 - **Design drift**: repeated inconsistencies between intended UX (from design.md) and implemented UI, layout, or interaction patterns
 - **UX confusion**: patterns where users or reviewers misinterpret behaviour due to unclear hierarchy, interaction flow, or state feedback
+- **Stale review line pointers vs traced handlers**: reconcile validation notes with implementation when artefacts disagree on line numbers but agree on behaviour
 
 ## Priority rule (critical)
 

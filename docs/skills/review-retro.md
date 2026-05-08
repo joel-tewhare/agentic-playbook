@@ -45,6 +45,7 @@ Prioritize review items that change runtime semantics (e.g. error propagation be
   - rejected
 - Distinguish implemented fixes from fixes subsequently verified through checks, evals, or manual smoke testing; call out skipped, stale, or earlier-only verification evidence
   - If implementation closeout states checks/evals were not rerun, do not describe separate check/eval artefacts as verification of that fix unless the artefact run is explicitly tied to the same revision (e.g. SHA or dated note).
+  - When external reviews cite line numbers, validation should still trace **named handlers** (`onClose`, `onClick` for **Change**, etc.); stale line refs should not block validation if behaviour matches.
 - Look for repeated patterns, not one-off noise
 - Filter aggressively — fewer high-quality insights is better than many weak ones
 - Avoid repeating the same idea across sections
