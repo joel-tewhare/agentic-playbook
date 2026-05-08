@@ -112,6 +112,7 @@ This removes ambiguity for `/retro` and humans; do not leave it implicit whether
 - `/review-retro` may be invoked by chained shortcuts (e.g. `/ai-retro-closing`). Avoid running it twice in the same closeout cycle; duplicate runs inflate artefacts, repeat candidate-memory blocks, and waste follow-up time.
 - When the workspace is writable, close the loop in the same session: implementation → validation → review-retro → merge **Candidate memory notes** into `memory.md` (or `/retro`). If `memory.md` cannot be updated here (e.g. read-only environment), record **Memory:** pending (or applied in commit …) on the review-retro artefact so reconciliation is not ambiguous.
 - When the implementation summary says checks/evals were not rerun in that task, still record **where** current verification lives (e.g. paths to updated checks/evals logs or “pending”) so `/retro` does not see conflicting snapshots.
+- If review-retro claims verification from archived checks/evals while the implementation summary says reruns were skipped, require an explicit reconciliation line (SHA/date tie, or “general regression only / lifecycle uncovered”) so `/retro` does not treat both as true without context.
 
 ---
 

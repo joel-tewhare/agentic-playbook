@@ -29,7 +29,7 @@ Implementation summaries sometimes record â€œchecks/evals not run for this passâ
 
 Distinguish between earlier green artefacts, post-fix verification evidence, manual smoke validation, and implementation claims that were not re-verified after changes. Treat verification timing as workflow evidence, not merely pass/fail state.
 
-If an implementation artefact disclaims reruns while review-retro cites passing runs, treat as **reconciliation**: confirm both refer to the same revision or label one artefact as authoritative.
+If an implementation artefact disclaims reruns while review-retro cites passing runs, treat as **reconciliation**: confirm both refer to the same revision or label one artefact as authoritative. When they disagree on whether passing checks/evals **prove a specific fix**, use **Checks/evals vs revision** in `memory.md` to label whether archived logs bind to that revision or are general regression-only evidence.
 
 If an input is missing, continue with what you have.
 
