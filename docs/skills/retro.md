@@ -18,7 +18,7 @@ You are improving the system that guides future AI-assisted work.
 ## Inputs to check (in order)
 
 1. `memory.md` (prioritise newest additions)
-2. Retro artifacts (review-retro output, secondary review findings, notes). Paths such as `docs/review-retros/...-review-retro.md` may hold **candidate memory notes** that never reached `memory.md`.
+2. Retro artifacts (review-retro output, secondary review findings, notes). Paths such as `docs/review-retros/...-review-retro.md` may hold **candidate memory notes** that never reached `memory.md`. When referenced implementation or validation files are missing, note **artefact gap** in the retro output and prefer extending existing **Checks/evals vs revision** guidance in `memory.md` rather than inventing product lessons.
 3. Relevant skill files (only if a change is clearly warranted)
 
 Reconcile those candidates in `/retro`: extend existing bullets, add minimal new bullets where needed, or **skip** each with a brief rationale so guidance does not drift between artefact and `memory.md`.

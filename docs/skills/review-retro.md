@@ -18,6 +18,7 @@ You may be given:
 - the user’s notes about which findings they accepted, partially accepted, or rejected
 - notes on which suggestions were actually implemented
 - the current memory.md content or examples of its structure and tone
+- paths to implementation / validation / review artefacts; if any path is missing from disk, state that explicitly in **Review retro summary** so downstream `/retro` does not assume a closed loop.
 
 ---
 
