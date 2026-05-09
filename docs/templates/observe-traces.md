@@ -116,20 +116,6 @@ Examples:
 
 Extract only useful operational metadata from the metadata JSON.
 
-Examples:
-
-* feature
-* route
-* selectedModel
-* toolCount
-* operationId
-* functionId
-* provider
-* token counts
-* latency metrics
-
-### Summary
-
 * feature:
 * route:
 * selectedModel:
