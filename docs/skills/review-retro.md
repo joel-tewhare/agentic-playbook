@@ -19,6 +19,8 @@ You may be given:
 - notes on which suggestions were actually implemented
 - the current memory.md content or examples of its structure and tone
 - paths to implementation / validation / review artefacts; if any path is missing from disk, state that explicitly in **Review retro summary** so downstream `/retro` does not assume a closed loop.
+- when validation or implementation snapshots file absence/presence under `docs/`, note that snapshot may be superseded later; downstream `/retro` can use a fresh glob when deciding whether a documented gap still exists—without rewriting validation conclusions retroactively.
+- when **implementation defer** names one checks/evals basename and **verification later appears** under another, the review-retro summary should say so explicitly (`phone-intake-checks.md` vs `recording-checks.md`) so `/retro` can mark **snapshot superseded** without rereading code.
 
 ---
 
