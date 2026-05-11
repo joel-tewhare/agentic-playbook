@@ -57,6 +57,13 @@ Do not comment outside the intended scope.
 - Each finding should be directly actionable in a small, local change.
 - Avoid vague or conceptual feedback without a clear next step.
 
+### Respect Design Constraints (if present)
+
+- If a `design.md` is provided, treat it as a source of UX, layout, interaction, and tone constraints.
+- Validate that the implementation aligns with these constraints where relevant.
+- Do not suggest new design directions beyond what is defined in `design.md`.
+- Do not prioritise design feedback over correctness or system design.
+
 ## Review Workflow
 
 1. Read the changed code and enough surrounding context to understand intent.
@@ -66,6 +73,11 @@ Do not comment outside the intended scope.
    - Small full-stack / Next.js patterns:
      - Flag duplicated allowlists (e.g. model IDs in server routes and client UI)
      - Flag use of `NEXT_PUBLIC_*` values for auth, and distinguish dev-gate setups from real production auth
+   - When a `design.md` is present:
+     - check alignment between implemented UI/UX and defined design principles
+     - flag inconsistencies in layout hierarchy, interaction patterns, or tone where they are clearly violated
+     - avoid speculative or subjective design critique
+   - For TanStack React Query (or similar): when `useEffect` gates side-effecting work (auto-run mutations, one-shot integrations), validate default refetch behaviour and `isFetching` vs `isPending`—background refetch must not reset idempotency guards in a way that repeats writes for the same semantic inputs.
 4. Prioritise actionable findings by severity.
 5. Keep summaries brief and place findings first.
 
@@ -74,6 +86,10 @@ Do not comment outside the intended scope.
 - High: correctness, data integrity, lifecycle, security, or contract-breaking issues
 - Medium: real architectural or workflow risks that may cause inconsistent behaviour
 - Low: clarity, presentation, or contract cleanup issues that do not threaten correctness
+- When calibrating against a provided `design.md`:
+  - **Medium**: clear mismatch between implementation and defined design.md behaviour or interaction patterns
+  - **Low**: minor inconsistencies with design.md (e.g. spacing, hierarchy, tone) that do not affect correctness
+- For client-triggered flows that invoke server mutations or automation (writes, batch jobs, external integrations): ground severity in deployed data shape, mock versus production identifiers, environment-gated behaviour, and observable runtime conditions—not hypothetical misuse alone. Do not overstated purely hypothetical production risks when existing guards materially bound impact.
 
 ## Output Format
 
@@ -82,6 +98,7 @@ Do not comment outside the intended scope.
 - State overall quality.
 - State the key risks.
 - State confidence level.
+- Keep the opening summary consistent with the findings in the same document; when noting absent expected artefacts, reference canonical in-repo alternatives when they exist (for example root `checks.sh`, `evals.mjs`).
 
 ### Findings
 
@@ -95,6 +112,11 @@ For each issue, include:
 - Minimal suggestion
 
 Prefer referencing exact files and code sections when possible.
+
+- Include design.md alignment issues only when:
+  - they are clearly defined in the design.md
+  - they result in inconsistent or confusing UX
+  - they can be addressed with a small, local change
 
 ### Suggested Improvements
 
@@ -114,7 +136,11 @@ Prefer referencing exact files and code sections when possible.
 ## Constraints
 
 - Do not implement changes.
+- Do not treat **`git diff` scope**, snapshot diff commentary, or stale “what changed” prose as findings; validate against the working tree, named paths, or an explicit commit range. Stale diff metadata should not block technical closeout or substitute handler- and route-grounded validation.
 - Do not rewrite full components.
 - Do not propose new architecture unless a concrete issue cannot be solved within the current design.
 - Do not suggest broad refactors or redesigns for stylistic reasons.
 - Do not pad the review with speculative or low-signal comments.
+- Do not perform open-ended design critique.
+- Do not suggest design changes unless they directly conflict with an existing `design.md`.
+- Do not treat absence of design.md as a problem.

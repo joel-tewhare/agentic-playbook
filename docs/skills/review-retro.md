@@ -104,6 +104,7 @@ This removes ambiguity for `/retro` and humans; do not leave it implicit whether
 
 ## Memory update instruction
 - Append the Candidate memory notes to memory.md in the most appropriate existing section, or merge/cross-reference into an existing bullet when the content duplicates a rule already present under a nearby heading
+- When an implementation artefact says checks or evals were **not run** for that task but a checks/evals doc later shows **green**, reconcile explicitly in the closeout or retro: either state the log is **not** tied to the implementation revision, or add SHA/date to the artefact so readers do not treat green as proof for an unrelated commit.
 - Do not overwrite or restructure existing content
 - Maintain consistency with formatting and ordering already present
 - If no clear section exists, place notes in the closest relevant section without creating unnecessary new headings
