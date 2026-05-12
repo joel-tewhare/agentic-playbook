@@ -183,7 +183,7 @@ Examples:
 
 - auth/header/cookie verification after auth or API client changes
 - AI SDK/tool-call behaviour after model or SDK changes
-- external API integration checks after provider wiring
+- external API integration checks after provider wiring (**wire-integration**); mock-first stacks may still use local DB/routes—keep checks deterministic and avoid adding network-dependent steps by default
 - mobile/device testing reminders for Expo/native features
 
 Do not add generic reminders that do not apply.
@@ -200,6 +200,7 @@ When complete:
    - useful checks missing from the project
    - any manual reminders added
 3. Do not run the checks unless explicitly asked.
+4. If check output is archived under `docs/checks/*.md` as evidence for a specific change (not only when “refreshing” an existing artefact), include a **Revision** block at the top of the paste: **`Date:`** and **`SHA:`** (or explicit **not pinned**) so green runs bind to a revision—consistent with `memory.md` **Checks/evals vs revision**.
 
 ## Verification
 

@@ -29,7 +29,7 @@ Implementation summaries sometimes record “checks/evals not run for this pass�
 
 Distinguish between earlier green artefacts, post-fix verification evidence, manual smoke validation, and implementation claims that were not re-verified after changes. Treat verification timing as workflow evidence, not merely pass/fail state.
 
-If an implementation artefact disclaims reruns while review-retro cites passing runs, treat as **reconciliation**: confirm both refer to the same revision or label one artefact as authoritative. When they disagree on whether passing checks/evals **prove a specific fix**, use **Checks/evals vs revision** in `memory.md` to label whether archived logs bind to that revision or are general regression-only evidence.
+If an implementation artefact disclaims reruns while review-retro cites passing runs, treat as **reconciliation**: confirm both refer to the same revision or label one artefact as authoritative. When they disagree on whether passing checks/evals **prove a specific fix**, use **Checks/evals vs revision** in `memory.md` to label whether archived logs bind to that revision or are general regression-only evidence. Do not frame the same situation as conflicting pass/fail across artefacts—classify it as **revision binding**, **Checks/evals vs revision**, and **closeout rerun disclosure** (what was rerun or skipped), including when an implementation summary lists checks/evals as **not rerun** for a landed fix while archived **`docs/checks/*`** output elsewhere still shows green.
 
 If an input is missing, continue with what you have.
 
