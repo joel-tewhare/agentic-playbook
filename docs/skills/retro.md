@@ -83,6 +83,8 @@ Only suggest changes when:
 
 Avoid repeating previous retro suggestions unless they are still unresolved.
 
+- When **`docs/review-retros/*-review-retro.md`** records **Memory update: Added**, still open `memory.md` and compare append-ready wording; if verbatim or near-verbatim text already exists there, classify **Memory outcome** as **Merged** in `/retro` output (and reconcile the review-retro line when touched in-cycle), not **Added**—so no second append is implied.
+
 - When design.md exists, use it as a reference point for identifying repeated UX or interaction issues
 - Do not suggest new design directions unless supported by repeated evidence across builds
 
