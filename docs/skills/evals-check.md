@@ -143,6 +143,8 @@ Do not only print failed booleans while exiting successfully.
 
 Prefer mock/local mode when testing script structure or deterministic helper logic.
 
+A mock-first **application** may still use an internal backend with seeded data; eval policy here is unchanged—keep evals deterministic and avoid network/provider calls unless the user intentionally runs provider-backed mode.
+
 Provider-backed mode may be used when testing model behaviour, but:
 
 - make required env vars explicit
@@ -190,7 +192,8 @@ When complete:
    - checks included
    - mock/provider modes
    - any useful evals not added and why
-3. Do not run evals unless explicitly asked.
+3. If the repo keeps feature-scoped check/eval logs under `docs/checks/*` or `docs/evals/*` (project convention), note in the summary whether those paths should be updated in the **same change batch** as new eval cases; do **not** create those documentation files unless the user asked.
+4. Do not run evals unless explicitly asked.
 
 ## Verification
 
