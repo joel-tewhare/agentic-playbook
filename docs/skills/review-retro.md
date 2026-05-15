@@ -57,6 +57,7 @@ Prioritize review items that change runtime semantics (e.g. error propagation be
 - Align all candidate notes with the user’s existing memory.md structure and tone
 - Avoid adding notes that are already clearly present in memory.md unless the new version adds meaningful nuance
 - If a candidate memory note restates an existing `memory.md` heading or bullet (e.g. security vs workflow), **merge or cross-reference** instead of appending a second full version of the same rule
+- If **Memory outcome** claims **Added** to `memory.md`, a later `/retro` should verify that bullet exists (intent-aligned wording counts); treat outdated “Added” claims as superseded once merged.
 
 ---
 
@@ -91,6 +92,7 @@ Prioritize review items that change runtime semantics (e.g. error propagation be
 - Keep notes concise, high-signal, and directly usable
 - Prioritise deeper insights over generic advice
 - If the provided `memory.md` already contains the same rule (same idea in an existing section), do not repeat full append-ready bullets. Instead add **Memory alignment**: one line naming the existing heading(s) or bullets, and only append genuinely new nuance.
+- Before treating **Candidate memory notes** as append-ready, grep or read `memory.md` for the same heading or distinctive keyword (e.g. **Upload approval authority**) so two retros close together do not restate the same bullet.
 
 ### Memory outcome (required)
 End every review-retro output with exactly one of:
@@ -99,6 +101,8 @@ End every review-retro output with exactly one of:
 - **Memory update:** **Deferred** — reconcile later in `/retro`; name the section(s) or candidates. Use when `memory.md` was not edited here but nuance should carry forward.
 
 This removes ambiguity for `/retro` and humans; do not leave it implicit whether `memory.md` changed.
+
+**Retro reconciliation:** When `/retro` confirms **Candidate memory notes** matched existing `memory.md` (see **Memory alignment**), amend the review-retro artefact so **Memory outcome** reads **Merged** (rule pre-existed; no duplicate append) rather than **Added**, matching sibling closeout hygiene (`login-mvp-review-retro.md`, `xero-mock-review-retro.md`).
 
 ---
 

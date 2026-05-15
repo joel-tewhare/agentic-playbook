@@ -18,12 +18,15 @@ You are improving the system that guides future AI-assisted work.
 ## Inputs to check (in order)
 
 1. `memory.md` (prioritise newest additions)
-2. Retro artifacts (review-retro output, secondary review findings, notes). Paths such as `docs/review-retros/...-review-retro.md` may hold **candidate memory notes** that never reached `memory.md`. When referenced implementation or validation files are missing, note **artefact gap** in the retro output and prefer extending existing **Checks/evals vs revision** guidance in `memory.md` rather than inventing product lessons. Reconcile timestamps and explicit “missing file” snapshots in validation docs (e.g. `recording-validation.md`) against the current repo; when those files exist now, document **superseded** in the retro output instead of treating the oldest snapshot as authoritative.
+2. Retro artifacts (review-retro output, secondary review findings, notes). Paths such as `docs/review-retros/...-review-retro.md` may hold **candidate memory notes** that never reached `memory.md`. When referenced implementation or validation files are missing, note **artefact gap** in the retro output and prefer extending existing **Checks/evals vs revision** guidance in `memory.md` rather than inventing product lessons. Reconcile timestamps and explicit “missing file” snapshots in validation docs (e.g. `recording-validation.md`) against the current repo; when those files exist now, document **superseded** in the retro output instead of treating the oldest snapshot as authoritative. When validation predates optional `docs/checks/*` / `docs/evals/*` paths that land later (Finding 4 pattern), prefer a validation **scope/header refresh** classifying stale missing-path claims as **superseded** so closeout does not re-litigate artefact gaps against the current tree.
 3. Relevant skill files (only if a change is clearly warranted)
+4. When **security-validation** or secondary audits quote **feature-validation** excerpts, confirm whether implementation superseded the quoted snapshot; classify stale validation narrative as **superseded** rather than debating pass/fail across artefacts.
 
 Reconcile those candidates in `/retro`: extend existing bullets, add minimal new bullets where needed, or **skip** each with a brief rationale so guidance does not drift between artefact and `memory.md`.
 
 When both artefact and post-implementation `memory.md` exist, **deduplicate** against `memory.md` before suggesting new bullets; **prefer extending** an existing entry when the concept is already there.
+
+When **review-retro** lists **Candidate memory notes (append-ready)**, compare verbatim or near-verbatim text against existing `memory.md` bullets first; in `/retro` output classify matches as **already merged** rather than recommending a duplicate append. When the same closeout cycle edits the review-retro artefact, align **Memory outcome** with that (**Merged** or **Deferred**, not **Added**) if `memory.md` already carries the same rule—**append-ready** describes draft usability, not a guarantee the file differs from `memory.md`.
 
 Implementation summaries sometimes record “checks/evals not run for this pass”; treat that as a signal for how strong automated evidence is, not as a product defect.
 

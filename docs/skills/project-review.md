@@ -99,6 +99,7 @@ Do not comment outside the intended scope.
 - State the key risks.
 - State confidence level.
 - Keep the opening summary consistent with the findings in the same document; when noting absent expected artefacts, reference canonical in-repo alternatives when they exist (for example root `checks.sh`, `evals.mjs`).
+- Prefer enumerated defects and residual/deferred risk ahead of a broad **release-ready** verdict when findings mix concrete defects with holistic readiness.
 
 ### Findings
 
@@ -112,6 +113,8 @@ For each issue, include:
 - Minimal suggestion
 
 Prefer referencing exact files and code sections when possible.
+
+- When citing check or test coverage, prefer the **canonical `docs/checks/*` path** the project names in rules; if the evidence lives in a feature-scoped mirror, say so explicitly (e.g. **alias:** `upload-extract-checks.md`) so path drift does not read as missing coverage.
 
 - Include design.md alignment issues only when:
   - they are clearly defined in the design.md
