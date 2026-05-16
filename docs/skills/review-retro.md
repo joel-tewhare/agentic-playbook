@@ -20,6 +20,7 @@ You may be given:
 - the current memory.md content or examples of its structure and tone
 - paths to implementation / validation / review artefacts; if any path is missing from disk, state that explicitly in **Review retro summary** so downstream `/retro` does not assume a closed loop.
 - when validation or implementation snapshots file absence/presence under `docs/`, note that snapshot may be superseded later; downstream `/retro` can use a fresh glob when deciding whether a documented gap still exists—without rewriting validation conclusions retroactively.
+- when validation asserts required artefact paths are **missing on disk**, state the verification method (e.g. glob/read) and date (or validated-as-of) in the artefact body so a later revision can mark the claim **superseded** without guesswork when paths land.
 - when **implementation defer** names one checks/evals basename and **verification later appears** under another, the review-retro summary should say so explicitly (`phone-intake-checks.md` vs `recording-checks.md`) so `/retro` can mark **snapshot superseded** without rereading code.
 
 ---
@@ -101,6 +102,8 @@ End every review-retro output with exactly one of:
 - **Memory update:** **Deferred** — reconcile later in `/retro`; name the section(s) or candidates. Use when `memory.md` was not edited here but nuance should carry forward.
 
 This removes ambiguity for `/retro` and humans; do not leave it implicit whether `memory.md` changed.
+
+**Append-ready vs existing prose:** If candidates were written append-ready but the operator folded the same wording into an existing `memory.md` bullet without net new text, use **Deferred** and point to the existing bullet names—reserve **Added** for revisions where `memory.md` gains genuinely new lines.
 
 **Retro reconciliation:** When `/retro` confirms **Candidate memory notes** matched existing `memory.md` (see **Memory alignment**), amend the review-retro artefact so **Memory outcome** reads **Merged** (rule pre-existed; no duplicate append) rather than **Added**, matching sibling closeout hygiene (`login-mvp-review-retro.md`, `xero-mock-review-retro.md`).
 
